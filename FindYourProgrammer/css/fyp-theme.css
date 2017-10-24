@@ -1,5 +1,13 @@
+footer {
+	color: #ffffff;
+	padding: 20px 0;
+	position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+}
 .top-buffer { margin-top:20px; }
-
 
 .navbar-custom {
   background-color: #ffffff;
