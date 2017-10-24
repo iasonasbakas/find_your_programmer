@@ -1,12 +1,14 @@
-footer {
-	color: #ffffff;
-	padding: 20px 0;
-	position: absolute;
+
+.footer {
+  color: #ffffff;
+  position: absolute;
+  position: fixed;
+  left: 0;
   bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
+  text-align: center;
 }
+
 .top-buffer { margin-top:20px; }
 
 .navbar-custom {
@@ -61,20 +63,4 @@ footer {
 }
 .navbar-custom .navbar-link:hover {
   color: #398da5;
-}
-
-@media (max-width: 767px) {
-  .navbar-custom .navbar-nav .open .dropdown-menu > li > a {
-    color: #5ba3b8;
-  }
-  .navbar-custom .navbar-nav .open .dropdown-menu > li > a:hover,
-  .navbar-custom .navbar-nav .open .dropdown-menu > li > a:focus {
-    color: #398da5;
-  }
-  .navbar-custom .navbar-nav .open .dropdown-menu > .active > a,
-  .navbar-custom .navbar-nav .open .dropdown-menu > .active > a:hover,
-  .navbar-custom .navbar-nav .open .dropdown-menu > .active > a:focus {
-    color: #398da5;
-    background-color: #ffffff;
-  }
 }
