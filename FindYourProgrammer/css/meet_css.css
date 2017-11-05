@@ -1,0 +1,43 @@
+.first-column {
+  width: 40%;
+  float: left;
+}
+
+.second-column {
+  width: 40%;
+  float: right;
+}
+
+.fa {
+    padding: 10px;
+    font-size: 30px;
+    width: 50px;
+    height: 20px;
+    text-align: center;
+    text-decoration: none;
+}
+
+
+/* Set a specific color for each brand */
+
+/* Facebook */
+.fa-facebook { 
+    color: white;
+}
+
+/* Twitter */
+.fa-twitter {
+    color: white ;
+}
+
+.fa-google {
+  color: white;
+}
+
+.fa-skype {
+  color: white;
+}
+
+.fa-linkedin {
+  color: white;
+}
