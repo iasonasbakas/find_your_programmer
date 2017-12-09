@@ -1,6 +1,5 @@
 package fyp_classes;
 
-import java.util.Date;
 
 public class Rating {
 
@@ -8,9 +7,9 @@ public class Rating {
 	private int rating;
 	private Meet meet;
 	private String ratinginfo;
-	private Date ratingdate;
+	private String ratingdate;
 
-	public Rating(int id, int rating, Meet meet, String ratinginfo, Date ratingdate) {
+	public Rating(int id, int rating, String ratinginfo, String ratingdate, Meet meet) {
 
 		this.id = id;
 		this.rating = rating;
@@ -51,11 +50,11 @@ public class Rating {
 		this.ratinginfo = ratinginfo;
 	}
 
-	public Date getDate() {
+	public String getRatingdate() {
 		return ratingdate;
 	}
 
-	public void setDate(Date date) {
+	public void setRatingdate(String date) {
 		this.ratingdate = ratingdate;
 	}
 }
