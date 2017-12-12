@@ -5,17 +5,17 @@ import java.util.Date;
 
 public class Meet {
 
-	private int id;
-	private Customer customer;
-	private Programmer programmer;
+	private int meetid;
 	private Date date;
 	private String time;
 	private String place;
 	private String extrainfo;
+	private Customer customer;
+	private Programmer programmer;
 
-	public Meet(int id, Customer customer, Programmer programmer, Date date,String time, String place, String extrainfo) {
+	public Meet(int meetid, Date date, String time, String place, String extrainfo, Customer customer, Programmer programmer) {
 
-		this.id = id;
+		this.meetid = meetid;
 		this.customer = customer;
 		this.programmer = programmer;
 		this.date = date;
@@ -24,12 +24,12 @@ public class Meet {
 		this.extrainfo = extrainfo;
 	}
 
-	public int getId() {
-		return id;
+	public int getMeetID() {
+		return meetid;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setMeetID(int meetid) {
+		this.meetid = meetid;
 	}
 
 	public Customer getCustomer() {

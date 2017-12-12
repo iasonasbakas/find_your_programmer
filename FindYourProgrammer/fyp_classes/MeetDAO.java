@@ -10,7 +10,7 @@ public class MeetDAO {
 
 	}
 
-	public List<Meet> getMeetByCustomer(int custid) throws Exception {
+	public List<Meet> getMeetsByCustomerID(int custid) throws Exception {
 
 		Connection con = null;
 
@@ -37,11 +37,15 @@ public class MeetDAO {
 
 			while(rs.next()) {
 
-				int custid = rs.getInt("custid");
+				int customerid = rs.getInt("custid");
 				CustomerDAO customerdao = new CustomerDAO();
-				Customer customer = customerdao.getCustomerByID(custid);
+				Customer customer = customerdao.getCustomerByID(customerid);
 
-				meets.add(new Meet(rs.getInt("meetid"), rs.getString("date"), rs.getString("place"), rs.getString("extrainfo"), rs.getString("email"), customer, programmer));
+				int programmerid = rs.getInt("progrid");
+				ProgrammerDAO programmerdao = new ProgrammerDAO();
+				Programmer programmer = programmerdao.getProgrammerByID(programmerid);
+
+				meets.add(new Meet(rs.getInt("meetid"), rs.getDate("date"), rs.getString("place"), rs.getString("extrainfo"), rs.getString("email"), customer, programmer));
 
 			}
 
@@ -49,7 +53,7 @@ public class MeetDAO {
 			stmt.close();
 			db.close();
 
-			return programmers;
+			return meets;
 
 		} catch (Exception e) {
 
@@ -65,6 +69,66 @@ public class MeetDAO {
 
 			}
 		}
+	}
+
+	public Meet getMeetByID(int meetid) throws Exception {
+
+		Connection con = null;
+
+		String sqlquery = "SELECT * FROM meet WHERE meetid = ?;";
+
+		DB db = new DB();
+
+		try {
+
+			db.open();
+
+			con = db.getConnection();
+
+			PreparedStatement stmt = con.prepareStatement(sqlquery);
+
+			stmt.setInt(1, meetid);
+
+			ResultSet rs = stmt.executeQuery();
+
+			if(!rs.next()) {
+
+				rs.close();
+				stmt.close();
+				db.close();
+
+				throw new Exception("Could not find Meet with id: "+meetid);
+			}
+
+			int customerid = rs.getInt("custid");
+			CustomerDAO customerdao = new CustomerDAO();
+				Customer customer = customerdao.getCustomerByID(customerid);
+
+			int programmerid = rs.getInt("progrid");
+			ProgrammerDAO programmerdao = new ProgrammerDAO();
+			Programmer programmer = programmerdao.getProgrammerByID(programmerid);
+
+			Meet meet = new Meet(rs.getInt("meetid"), rs.getDate("date"), rs.getString("place"), rs.getString("extrainfo"), rs.getString("email"), customer, programmer);
+
+			rs.close();
+			stmt.close();
+			db.close();
+
+			return meet;
+
+		} catch (Exception e) {
+
+			throw new Exception(e.getMessage());
+
+		} finally {
+
+			try {
+
+				db.close();
+
+			} catch(Exception e) {}
+		}
+
 	}
 
 }

@@ -29,12 +29,12 @@ public class RatingDAO {
 
 			stmt = con.prepareStatement(sqlquery);
 
-			int id = rating.getId();
+			int id = rating.getRatingID();
 			int ratingnum = rating.getRating();
 			String ratinginfo = rating.getRatinginfo();
 			String ratingdate = rating.getRatingdate();
 			Meet meet = rating.getMeet();
-			int meetid = meet.getId();
+			int meetid = meet.getMeetID();
 
 			stmt.setInt(1, id);
 			stmt.setInt(2, ratingnum);
@@ -149,9 +149,10 @@ public class RatingDAO {
 			while(rs.next()) {
 
 				int meetid = rs.getInt("meetid");
-				MeetDAO meetdao
+				MeetDAO meetdao = new MeetDAO();
+				Meet meet = meetdao.getMeetByID(meetid);
 
-				ratings.add(new Rating(rs.getInt("id"), rs.getInt("rating"), rs.getString("ratinginfo"), rs.getString("ratingdate"), rs.getMeet("meetid")));
+				ratings.add(new Rating(rs.getInt("id"), rs.getInt("rating"), rs.getString("ratinginfo"), rs.getString("ratingdate"), meet));
 			}
 
 			rs.close();

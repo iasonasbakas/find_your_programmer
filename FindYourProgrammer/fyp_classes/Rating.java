@@ -3,27 +3,27 @@ package fyp_classes;
 
 public class Rating {
 
-	private int id;
+	private int ratid;
 	private int rating;
-	private Meet meet;
 	private String ratinginfo;
 	private String ratingdate;
+	private Meet meet;
 
-	public Rating(int id, int rating, String ratinginfo, String ratingdate, Meet meet) {
+	public Rating(int ratid, int rating, String ratinginfo, String ratingdate, Meet meet) {
 
-		this.id = id;
+		this.ratid = ratid;
 		this.rating = rating;
 		this.meet = meet;
 		this.ratinginfo = ratinginfo;
 		this.ratingdate = ratingdate;
 	}
 
-	public int getId() {
-		return id;
+	public int getRatingID() {
+		return ratid;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setRatingID(int id) {
+		this.ratid = ratid;
 	}
 
 	public int getRating() {
