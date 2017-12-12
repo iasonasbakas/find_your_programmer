@@ -2,7 +2,7 @@ package fyp_classes;
 
 public class Programmer {
 
-	private int id;
+	private int progrid;
 	private String name;
 	private String surname;
 	private String phone;
@@ -10,9 +10,9 @@ public class Programmer {
 	private String extrainfo;
 	private ProgrLang progrlang;
 
-	public Programmer(int id, String name, String surname, String phone, String email, String extrainfo, ProgrLang progrlang) {
+	public Programmer(int progrid, String name, String surname, String phone, String email, String extrainfo, ProgrLang progrlang) {
 
-		this.id = id;
+		this.progrid = progrid;
 		this.name = name;
 		this.surname = surname;
 		this.phone = phone;
@@ -21,12 +21,12 @@ public class Programmer {
 		this.progrlang = progrlang;
 	}
 
-	public int getId() {
-		return id;
+	public int getProgrammerId() {
+		return progrid;
 	}
 
-	public void setId(String id) {
-		this.name = name;
+	public void setProgrammerId(String id) {
+		this.progrid = progrid;
 	}
 
 	public String getName() {
@@ -46,7 +46,7 @@ public class Programmer {
 	}
 
 	public String getPhone() {
-		return name;
+		return phone;
 	}
 
 	public void setPhone(String phone) {
@@ -62,7 +62,7 @@ public class Programmer {
 	}
 
 	public String getExtrainfo() {
-		return name;
+		return extrainfo;
 	}
 
 	public void setExtrainfo(String extrainfo) {

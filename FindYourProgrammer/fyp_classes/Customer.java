@@ -2,6 +2,7 @@ package fyp_classes;
 
 public class Customer {
 
+	private int custid;
 	private String username;
 	private String password;
 	private String name;
@@ -10,7 +11,8 @@ public class Customer {
 	private String email;
 
 
-	public Customer(String username, String password, String name, String surname, String phone, String email) {
+	public Customer(int custid, String username, String password, String name, String surname, String phone, String email) {
+		this.custid = custid;
 		this.username = username;
 		this.password = password;
 		this.name = name;
@@ -20,6 +22,14 @@ public class Customer {
 	}
 
 		/*Getters and Setters*/
+
+	public int getCustomerID() {
+		return custid;
+	}
+
+	public void setCustomerID(int custid) {
+		this.custid = custid;
+	}
 
 	public String getUsername() {
 		return username;
