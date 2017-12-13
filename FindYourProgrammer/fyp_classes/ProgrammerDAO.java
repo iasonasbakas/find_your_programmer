@@ -34,11 +34,7 @@ public class ProgrammerDAO {
 
 			while(rs.next()) {
 
-				int progrlangid = rs.getInt("langid");
-				ProgrLangDAO progrlangdao = new ProgrLangDAO();
-				ProgrLang progrlang = progrlangdao.getProgrLangByID(progrlangid);
-
-				programmers.add(new Programmer(rs.getInt("id"), rs.getString("name"), rs.getString("surname"), rs.getString("phone"), rs.getString("email"), rs.getString("extrainfo"), progrlang));
+				programmers.add(new Programmer(rs.getInt("progrid"), rs.getString("name"), rs.getString("surname"), rs.getString("phone"), rs.getString("email"), rs.getString("extrainfo")));
 
 			}
 
@@ -64,11 +60,68 @@ public class ProgrammerDAO {
 		}
 	}
 
+
+	public List<Programmer> getProgrammersByLang(int langid) throws Exception {
+
+		Connection con = null;
+
+		String sqlquery = "SELECT * FROM progrskills WHERE langid = ?;";
+
+		DB db = new DB();
+
+		PreparedStatement stmt = null;
+
+		try {
+
+			db.open();
+
+			con = db.getConnection();
+
+			stmt = con.prepareStatement(sqlquery);
+
+			stmt.setInt(1, langid);
+
+			ResultSet rs = stmt.executeQuery();
+
+			List<Programmer> programmers = new ArrayList<Programmer>();
+
+			while(rs.next()) {
+
+				int prid = rs.getInt("progrid");
+				Programmer programmer = getProgrammerByID(prid);
+
+				programmers.add(programmer);
+
+			}
+
+			rs.close();
+			stmt.close();
+			db.close();
+
+			return programmers;
+
+		} catch (Exception e) {
+
+			throw new Exception(e.getMessage());
+
+		} finally {
+
+			try {
+
+				db.close();
+
+			} catch (Exception e) {
+
+			}
+		}
+	}
+
+
 	public Programmer getProgrammerByID(int id) throws Exception {
 
 		Connection con = null;
 
-		String sqlquery = "SELECT * FROM programmer WHERE id = ?;";
+		String sqlquery = "SELECT * FROM programmer WHERE progrid = ?;";
 
 		DB db = new DB();
 
@@ -92,11 +145,7 @@ public class ProgrammerDAO {
 				throw new Exception("Could not find Programmer with id: "+id);
 			}
 
-			ProgrLangDAO progrlangdao = new ProgrLangDAO();
-			int progrlangid = rs.getInt("langid");
-			ProgrLang progrlang = progrlangdao.getProgrLangByID(progrlangid);
-
-			Programmer programmer = new Programmer(rs.getInt("id"), rs.getString("name"), rs.getString("surname"), rs.getString("phone"), rs.getString("email"), rs.getString("extrainfo"), progrlang );
+			Programmer programmer = new Programmer(rs.getInt("progrid"), rs.getString("name"), rs.getString("surname"), rs.getString("phone"), rs.getString("email"), rs.getString("extrainfo"));
 
 			rs.close();
 			stmt.close();

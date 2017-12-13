@@ -60,14 +60,14 @@ session.invalidate();
 
 	<div class="container theme-showcase" role="main">
 		<div class="page-header">
-		<div><h1>Η έξοδος πραγματοποιήθηκε με επιτυχία!<h1></div>
+		<div><h1>Ξ— Ξ­ΞΎΞΏΞ΄ΞΏΟ‚ Ο€ΟΞ±Ξ³ΞΌΞ±Ο„ΞΏΟ€ΞΏΞΉΞ®ΞΈΞ·ΞΊΞµ ΞΌΞµ ΞµΟ€ΞΉΟ„Ο…Ο‡Ξ―Ξ±!<h1></div>
 		</div>
 	</div>
 
 
 
 	<footer class="footer">
-		<p>© 2017 Find Your Programmer. All rights reserved</p>
+		<p>Β© 2017 Find Your Programmer. All rights reserved</p>
 	</footer>
 
 

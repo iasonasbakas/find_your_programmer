@@ -48,27 +48,27 @@ public class Customer {
 	}
 
 	public String getName() {
-		return password;
+		return name;
 	}
 
-	public void setName(String password) {
-		this.password = password;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getSurname() {
-		return password;
+		return surname;
 	}
 
-	public void setSurname(String password) {
-		this.password = password;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	public String getPhone() {
-		return password;
+		return phone;
 	}
 
-	public void setPhone(String password) {
-		this.password = password;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getEmail() {

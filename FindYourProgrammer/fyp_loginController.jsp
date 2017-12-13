@@ -15,7 +15,7 @@ try {
 
 	request.setAttribute("message", "Wrong credentials");
 %>
-	<jsp:forward page="fyp_index.jsp"/>
+	<jsp:forward page="fyp_login.jsp"/>
 <%
 
 }
@@ -24,4 +24,4 @@ session.setAttribute("customer-object", customerdao.findCustomer(username));
 
 %>
 
-<jsp:forward page="fyp_indexCustomer.jsp"/>
+<jsp:forward page="fyp_index.jsp"/>
