@@ -8,7 +8,7 @@ EXTRAINFO VARCHAR(500) NOT NULL,
 PRIMARY KEY (PROGRID));
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO PROGRAMMER VALUES ('1' , 'Nestor' , 'Bakas' , '6987542154', 'nestor@gmail.com', 'Ώρες εργασίας: 8.00 - 20.00, Τοποθεσίες: Αττική , Μεγάλη πείρα σε κατασκευή πολύπλοκων ιστοσελίδων');
+INSERT INTO PROGRAMMER (name, surname, phone, email, extrainfo) VALUES (''Nestor' , 'Bakas' , '6987542154', 'nestor@gmail.com', 'Ώρες εργασίας: 8.00 - 20.00, Τοποθεσίες: Αττική , Μεγάλη πείρα σε κατασκευή πολύπλοκων ιστοσελίδων');
 
 CREATE TABLE PROGRLANG (
 LANGID INT NOT NULL AUTO_INCREMENT,
@@ -44,7 +44,7 @@ EMAIL VARCHAR(20) NOT NULL,
 PRIMARY KEY (CUSTID));
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO CUSTOMER VALUES ( '1', 'iasonas', '1111', 'Iason', 'Bakas', '698203642', 'iasonas@gmail.com');
+INSERT INTO CUSTOMER (username, name, surname, phone, email) VALUES ( '1', 'iasonas', '1111', 'Iason', 'Bakas', '698203642', 'iasonas@gmail.com');
 
 CREATE TABLE MEET (
 MEETID INT NOT NULL AUTO_INCREMENT,

@@ -1,4 +1,5 @@
 package fyp_classes;
+import java.sql.*;
 
 public class DataValidation {
 
@@ -39,5 +40,74 @@ public class DataValidation {
 
 		return true;
 	}
+
+	public boolean isPasswordValid(String p1, String p2) {
+
+		if(p1 == p2) {
+
+			return true;
+
+		} else {
+
+			return false;
+		}
+	}
+
+	public boolean isUsernameValid(String username) throws Exception {
+
+		Connection con = null;
+
+		String sqlquery = "SELECT username FROM customer WHERE username = ?;";
+
+		PreparedStatement stmt = null;
+
+		DB db = new DB();
+
+		try {
+
+			db.open();
+
+			con = db.getConnection();
+
+			stmt = con.prepareStatement(sqlquery);
+
+			stmt.setString(1, username);
+
+			ResultSet rs = stmt.executeQuery();
+
+			if(rs.next()) {
+
+				return false;
+
+			} else {
+
+				return true;
+			}
+
+
+
+		} catch (Exception e) {
+
+			throw new Exception(e.getMessage());
+
+		} finally {
+
+			try {
+				db.close();
+
+			} catch (Exception e) {
+
+			}
+		}
+	}
+
+	public static boolean isNull(String s)	{
+
+	  return (s==null || s.trim().equals(""));
+	}
+
+
+
+
 
 }

@@ -37,7 +37,7 @@ public class CustomerDAO {
 
 			}
 
-			Customer customer = new Customer( rs.getInt("custid"), rs.getString("username"), rs.getString("password"), rs.getString("name"), rs.getString("surname"), rs.getString("phone"), rs.getString("email") );
+			Customer customer = new Customer(rs.getString("username"), rs.getString("password"), rs.getString("name"), rs.getString("surname"), rs.getString("phone"), rs.getString("email") );
 
 			rs.close();
 			stmt.close();
@@ -162,5 +162,58 @@ public class CustomerDAO {
 		}
 
 	}
+
+	public void saveCustomer(Customer customer) throws Exception {
+
+		Connection con = null;
+
+		String sqlquery = "INSERT INTO customer (username, name, surname, email, phone) VALUES (?, ?, ?, ?, ?);";
+
+		DB db = new DB();
+
+		PreparedStatement stmt = null;
+
+		try {
+
+			db.open();
+
+			con = db.getConnection();
+
+			stmt = con.prepareStatement(sqlquery);
+
+			String username = customer.getUsername();
+			String name = customer.getName();
+			String surname = customer.getSurname();
+			String phone = customer.getPhone();
+			String email = customer.getEmail();
+
+			stmt.setString(1, username);
+			stmt.setString(2, name);
+			stmt.setString(3, surname);
+			stmt.setString(4, email);
+			stmt.setString(5, phone);
+
+			stmt.executeUpdate();
+			stmt.close();
+			db.close();
+
+		} catch (SQLException e) {
+
+			throw new Exception(e.getMessage());
+
+		} finally {
+
+			try {
+
+				db.close();
+
+			}catch(Exception e) {
+
+			}
+
+		}
+
+	}
+
 
 }

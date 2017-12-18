@@ -73,7 +73,7 @@ if(session.getAttribute("customer-object") == null) {
 	<nav class="navbar navbar-inverse navbar-fixed-top navbar-custom">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand text-info" href="">Find your Programmer</a>
+				<a class="navbar-brand text-info" href="fyp_index.jsp">Find your Programmer</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
