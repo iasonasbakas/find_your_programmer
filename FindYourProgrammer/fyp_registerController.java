@@ -83,14 +83,15 @@ public class fyp_registerController extends HttpServlet {
 
 			if(data.isNameValid(name) && data.isNameValid(surname) && data.isValidEmailAddress(email) && data.isValidPhoneNumber(phone) && data.isPasswordValid(password, passwordval) && data.isUsernameValid(username)) {
 
-				out.println("			<div class='alert alert-success col-lg-12'>The Student has been registered to the Database</div>");
+				out.println("			<div class='alert alert-success col-lg-12'><strong>The Student has been registered to the Database</strong>");
+				out.println("			");
 				out.println("			<ul class='list-unstyled'>");
-				out.println("				<li><b>Username: </b>"+username+"</li>");
+				out.println("				<li><b><br>Username: </b>"+username+"</li>");
 				out.println("				<li><b>Name: </b>" +name+" </li>");
 				out.println("				<li><b>Surname: </b>"+surname+"</li>");
 				out.println("				<li><b>Phone: </b>"+phone+"</li>");
 				out.println("				<li><b>Email: </b>"+email+"</li>");
-				out.println("			</ul>");
+				out.println("			</ul></div>");
 
 				CustomerDAO custdao = new CustomerDAO();
 				Customer customer = new Customer(username, password, name, surname, phone, email);
@@ -128,7 +129,7 @@ public class fyp_registerController extends HttpServlet {
 				out.println("			</div>");
 				out.println("			<div class='form-group'>");
 				out.println("				<div class='col-md-6 col-md-offset-5' >");
-				out.println("					<a role='button' type='submit' class='btn btn-primary btn-lg' href='../register.html'><span class='glyphicon glyphicon-chevron-left'></span>Back to the form</a>");
+				out.println("					<a role='button' type='submit' class='btn btn-primary btn-lg' href='../fyp_register.jsp'><span class='glyphicon glyphicon-chevron-left'></span>Back to the form</a>");
 				out.println("				</div>");
 				out.println("			</div>");
 			} // end_else

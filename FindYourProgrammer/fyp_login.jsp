@@ -41,6 +41,13 @@
 			<div class="navbar-header">
 				<a class="navbar-brand text-info" href="">Find your Programmer</a>
 			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<a class="navbar-brand text-info" href="fyp_register.jsp"><small>
+						Eγγραφή
+					</small></a>
+				</ul>
+			</div>
 		</div>
 	</nav>
 
@@ -65,7 +72,7 @@
 								<input type="password" class="form-control" name="password" placeholder="Password" required>
 								<input type="submit" class="btn btn-lg btn-default btn-block" value="Sign In" />
 							</form>
-							<p class="text-center"><a href="register.html">Need an Account?</a></p>
+							<p class="text-center"><a href="fyp_register.jsp">Need an Account?</a></p>
 						</div>
 					</div>
 				</div> <!-- loginform -->

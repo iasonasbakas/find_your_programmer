@@ -15,7 +15,7 @@ public class RatingDAO {
 
 		Connection con = null;
 
-		String sqlquery = "INSERT INTO rating (ratid, rating, ratinginfo, ratingdate, meetid) VALUES (?, ?, ?, ?, ?, ?);";
+		String sqlquery = "INSERT INTO rating (rating, ratinginfo, ratingdate, meetid) VALUES (?, ?, ?, ?, ?);";
 
 		DB db = new DB();
 
@@ -29,18 +29,17 @@ public class RatingDAO {
 
 			stmt = con.prepareStatement(sqlquery);
 
-			int id = rating.getRatingID();
 			int ratingnum = rating.getRating();
 			String ratinginfo = rating.getRatinginfo();
 			String ratingdate = rating.getRatingdate();
 			Meet meet = rating.getMeet();
 			int meetid = meet.getMeetID();
 
-			stmt.setInt(1, id);
-			stmt.setInt(2, ratingnum);
-			stmt.setString(3, ratinginfo);
-			stmt.setString(4, ratingdate);
-			stmt.setInt(5, meetid);
+
+			stmt.setInt(1, ratingnum);
+			stmt.setString(2, ratinginfo);
+			stmt.setString(3, ratingdate);
+			stmt.setInt(4, meetid);
 
 			stmt.executeUpdate();
 			stmt.close();

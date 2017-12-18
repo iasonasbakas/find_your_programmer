@@ -37,7 +37,7 @@ public class CustomerDAO {
 
 			}
 
-			Customer customer = new Customer(rs.getInt("custid"),rs.getString("username"), rs.getString("password"), rs.getString("name"), rs.getString("surname"), rs.getString("phone"), rs.getString("email") );
+			Customer customer = new Customer(rs.getString("username"), rs.getString("password"), rs.getString("name"), rs.getString("surname"), rs.getString("phone"), rs.getString("email") );
 
 			rs.close();
 			stmt.close();
@@ -91,7 +91,7 @@ public class CustomerDAO {
 
 			}
 
-			Customer customer = new Customer(rs.getInt("custid"),rs.getString("username"), rs.getString("password"), rs.getString("name"), rs.getString("surname"), rs.getString("phone"), rs.getString("email") );
+			Customer customer = new Customer(rs.getString("username"), rs.getString("password"), rs.getString("name"), rs.getString("surname"), rs.getString("phone"), rs.getString("email") );
 
 			rs.close();
 			stmt.close();
@@ -167,7 +167,7 @@ public class CustomerDAO {
 
 		Connection con = null;
 
-		String sqlquery = "INSERT INTO customer (username, name, surname, email, phone) VALUES (?, ?, ?, ?, ?);";
+		String sqlquery = "INSERT INTO customer (username, password, name, surname, email, phone) VALUES (?, ?, ?, ?, ?, ?);";
 
 		DB db = new DB();
 
@@ -182,16 +182,18 @@ public class CustomerDAO {
 			stmt = con.prepareStatement(sqlquery);
 
 			String username = customer.getUsername();
+			String password = customer.getPassword();
 			String name = customer.getName();
 			String surname = customer.getSurname();
 			String phone = customer.getPhone();
 			String email = customer.getEmail();
 
 			stmt.setString(1, username);
-			stmt.setString(2, name);
-			stmt.setString(3, surname);
-			stmt.setString(4, email);
-			stmt.setString(5, phone);
+			stmt.setString(2, password);
+			stmt.setString(3, name);
+			stmt.setString(4, surname);
+			stmt.setString(5, email);
+			stmt.setString(6, phone);
 
 			stmt.executeUpdate();
 			stmt.close();
