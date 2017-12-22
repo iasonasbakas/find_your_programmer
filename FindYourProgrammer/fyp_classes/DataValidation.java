@@ -1,11 +1,18 @@
 package fyp_classes;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class DataValidation {
 
 	public DataValidation() {
 
 	}
+
+//////////////////////////////REGISTRATION//////////////////////////////
 
 	public boolean isNameValid(String name) {
 
@@ -107,6 +114,41 @@ public class DataValidation {
 	}
 
 
+//////////////////////////////MEET//////////////////////////////
+
+	public boolean isDateValid(String date) {
+
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	    dateFormat.setLenient(false);
+
+	    try {
+
+	      dateFormat.parse(date.trim());
+
+	    } catch (ParseException e) {
+
+	      return false;
+
+	    }
+
+	    return true;
+ 	}
+
+	public boolean isTimeValid(String time) {
+
+		Pattern pattern;
+		Matcher matcher;
+		String TIME12HOURS_PATTERN = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
+		pattern = Pattern.compile(TIME12HOURS_PATTERN);
+		matcher = pattern.matcher(time);
+		if(matcher.matches()) {
+			return true;
+		} else {
+			return false;
+		}
+
+
+	}
 
 
 

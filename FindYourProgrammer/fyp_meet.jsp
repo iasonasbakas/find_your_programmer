@@ -1,3 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="fyp_classes.*" %>
+<%@ page errorPage="fyp_errorPage.jsp" %>
+
+<%
+Customer customer = (Customer) session.getAttribute("customer-object");
+if(session.getAttribute("customer-object") == null) {
+	request.setAttribute("message", "You are not authorized to access this resource. Please login.");
+%>
+
+<jsp:forward page="fyp_login.jsp" />
+
+<%
+} else {
+
+
+
+String prid = request.getParameter("prID");
+int id = Integer.parseInt(prid);
+ProgrammerDAO prodao = new ProgrammerDAO();
+Programmer programmer = prodao.getProgrammerByID(id);
+
+session.setAttribute("programmer-object",programmer);
+
+
+%>
+
+
 <!DOCTYPE html>
 <html lang="el">
 
@@ -46,8 +74,23 @@
 	<nav class="navbar navbar-inverse navbar-fixed-top navbar-custom">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand text-info" href="fyp.html">Find your Programmer</a>
+				<a class="navbar-brand text-info" href="">Find your Programmer</a>
 			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="fyp_index.jsp">Home</a></li>
+					<li><a href="fyp_search.jsp">Search</a></li>
+					<li><a href="">MyMeetings</a></li>
+				</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+						<a id="customer" class="dropdown-toggle" data-toggle="dropdown" >
+						    <span class="glyphicon glyphicon-user"></span><%= customer.getUsername() %><span class="caret"></span></a>
+       						<ul class="dropdown-menu">
+       							<li><a href="fyp_logout.jsp">Logout</a></li>
+       						</ul>
+       						</li>	
+					</ul>			
 		</div>
 	</nav>
 
@@ -55,19 +98,15 @@
 
 	<div class="container theme-showcase" role="main">
 		<div class="page-header">
-		<div><h1>Δημιούργησε νέα συνάντηση ή / και επικοινώνησε με τον<h1></div>
+		<div><h1>Δημιούργησε νέα συνάντηση ή / και επικοινώνησε με τον <%=programmer.getName()%><h1></div>
 		</div>
 	</div>
 
 
-
-
-
-
 	<div class="container">
+	<form class="form-horizontal" method="POST" action="servlet/fyp_meetController">
 		<div class="modal-body row">
 			<div class="col-md-6">
-				<form class="form-horizontal">
 					<div class="form-group">
 						<label class="control-label col-lg-1" for="inputPlace">Place: </label>
 							<div class="col-lg-6">
@@ -83,58 +122,57 @@
 					<div class="form-group">
 						<label class="control-label col-lg-1" for="inputDate">Time: </label>
 							<div class="col-lg-6">
-								<input type="text" class="form-control" id="inputTime" name="time" placeholder="hh.mm">
+								<input type="text" class="form-control" id="inputTime" name="time" placeholder="hh:mm">
 							</div>
 					</div>
 					<div class="form-group">
 					  	<label class="control-label col-lg-1" for="extrainfo">Info: </label>
 						  	<div class="col-lg-8">
-						 		<textarea class="form-control" rows="5" id="extrainfo"></textarea>
+						 		<textarea class="form-control" rows="5" id="extrainfo" name="extrainfo"></textarea>
 						 	</div>
 					</div>
-				</form>
 			</div>
 			<div class="col-md-6">
 				<form class="form-horizontal">
 					<div class="form-group">
 						<div class="fa fa-facebook col-lg-1"></div>
 						<div class="col-lg-6">
-							<input type="text" class="form-control" id="inputDate" name="date" placeholder="Facebook / Messenger">
+							<input type="text" class="form-control" id="inputDate" name="social" placeholder="Facebook / Messenger">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="fa fa-twitter col-lg-1"></div>
 						<div class="col-lg-6">
-							<input type="text" class="form-control" id="inputDate" name="date" placeholder="Twitter">
+							<input type="text" class="form-control" id="inputDate" name="social" placeholder="Twitter">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="fa fa-google col-lg-1"></div>
 						<div class="col-lg-6">
-							<input type="text" class="form-control" id="inputDate" name="date" placeholder="Gmail">
+							<input type="text" class="form-control" id="inputDate" name="social" placeholder="Gmail">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="fa fa-skype col-lg-1"></div>
 						<div class="col-lg-6">
-							<input type="text" class="form-control" id="inputDate" name="date" placeholder="Skype">
+							<input type="text" class="form-control" id="inputDate" name="social" placeholder="Skype">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="fa fa-linkedin col-lg-1"></div>
 						<div class="col-lg-6">
-							<input type="text" class="form-control" id="inputDate" name="date" placeholder="LinkedIn">
+							<input type="text" class="form-control" id="inputDate" name="social" placeholder="LinkedIn">
+						</div>
+					</div>					
+					<div class="form-group">
+						<div class="col-lg-12 text-center">
+							<button type="submit" class="btn btn-default btn-lg btn-custom">Done!</button>
 						</div>
 					</div>
 				</form>
 			</div>
 		</div><!--/modal-body row-->
-		<div class="form-group">
-			<div class="col-lg-12 text-center">
-				<button type="submit" class="btn btn-default btn-lg btn-custom">Done!</button>
-			</div>
-		</div>
-
+	</form>
 	</div> <!-- /container-->
 		<footer class="footer">
 			<p>© 2017 Find Your Programmer. All rights reserved</p>
@@ -151,3 +189,7 @@
 
 	</body>
 </html>
+
+<%
+}
+%>

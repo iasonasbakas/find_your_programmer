@@ -109,62 +109,33 @@ if(session.getAttribute("customer-object") == null) {
 String slangid = request.getParameter("radios");
 int langid = Integer.parseInt(slangid);
 programmers = progdao.getProgrammersByLang(langid);
-Programmer progr;
+Programmer progr = null;
 
 
 if(!programmers.isEmpty()) {
 
 for(int i=0; i<programmers.size(); i++) {
 	progr = programmers.get(i);
+	int prid = progr.getProgrammerId();
 
 %>
 
     <div class="span3 well">
         <center>
-        <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src="images/bak.jpg" name="aboutme" width="140" height="140" class="img-circle"></a>
         <h3><%=progr.getName()%>&nbsp;<%=progr.getSurname()%></h3>
         <h4>Μ.Ο. Αξιολογήσεων:  </h4>
+	<span><strong>Phone: </strong></span>
+	<span class="label label-warning"><%=progr.getPhone()%></span>
+	<span><strong>Email: </strong></span>
+	<span class="label label-info"><%=progr.getEmail()%></span>
+	<p class="text-left"><strong>Πληροφορίες: </strong><br>
+	<%=progr.getExtraInfo()%></p>
+	<a role="button" class="btn btn-default" href="fyp_meet.jsp?prID=<%out.print(prid);%>">Κλείσε ραντεβού</a> 
 	</center>
     </div>
-
-
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title" id="myModalLabel">Περισσότερα για τον&nbsp;<%=progr.getName()%></h4>
-                    </div>
-                <div class="modal-body">
-                    <center>
-                    <img src="images/bak.jpg" name="aboutme" width="140" height="140" border="0" class="img-circle"></a>
-                    <h3 class="media-heading"><%=progr.getName()%>&nbsp;<%=progr.getSurname()%></h3>
-                    <div><span><strong>Μ.Ο. Αξιολογήσεων: </strong></span></div>
-                    <span><strong>Phone: </strong></span>
-                        <span class="label label-warning"><%=progr.getPhone()%></span>
-                    <span><strong>Email: </strong></span>
-                        <span class="label label-info"><%=progr.getEmail()%></span>
-                    </center>
-                    <hr>
-                    <center>
-                    <p class="text-left"><strong>Πληροφορίες: </strong><br>
-                        <%=progr.getExtraInfo()%></p>
-                    <br>
-                    </center>
-                </div>
-                <div class="modal-footer">
-                    <center>
-                    <a role="button" class="btn btn-default" href="meet.html">Κλείσε ραντεβού</a>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Πίσω</button>
-                    </center>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-
+  
 <%
-	} 
+} 
 
 } else {
 %>

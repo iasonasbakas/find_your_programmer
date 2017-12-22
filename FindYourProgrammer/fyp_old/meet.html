@@ -1,3 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="fyp_classes.*" %>
+<%@ page errorPage="fyp_errorPage.jsp" %>
+
+<%
+Customer customer = (Customer) session.getAttribute("customer-object");
+if(session.getAttribute("customer-object") == null) {
+	request.setAttribute("message", "You are not authorized to access this resource. Please login.");
+%>
+
+<jsp:forward page="fyp_login.jsp" />
+
+<%
+} else {
+
+	CustomerDAO cdao = new CustomerDAO();
+%>
+
+
 <!DOCTYPE html>
 <html lang="el">
 

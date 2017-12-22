@@ -8,7 +8,8 @@ EXTRAINFO VARCHAR(500) NOT NULL,
 PRIMARY KEY (PROGRID));
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO PROGRAMMER (name, surname, phone, email, extrainfo) VALUES (''Nestor' , 'Bakas' , '6987542154', 'nestor@gmail.com', 'Ώρες εργασίας: 8.00 - 20.00, Τοποθεσίες: Αττική , Μεγάλη πείρα σε κατασκευή πολύπλοκων ιστοσελίδων');
+INSERT INTO PROGRAMMER (name, surname, phone, email, extrainfo) VALUES ('Nestor' , 'Bakas' , '6987542154', 'nestor@gmail.com', 'Ώρες εργασίας: 8.00 - 20.00, Τοποθεσίες: Αττική , Μεγάλη πείρα σε κατασκευή πολύπλοκων ιστοσελίδων'),
+('Nikos', 'Dimitrakopoulos', '6982203655', 'nikdim@gmail.com', 'Χημεία Μεθ');
 
 CREATE TABLE PROGRLANG (
 LANGID INT NOT NULL AUTO_INCREMENT,
@@ -16,7 +17,7 @@ NAME VARCHAR(100),
 PRIMARY KEY(LANGID));
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO PROGRLAN VALUES ('1' , 'Σχεδίασμός και Ανάπτυξη βοηθητικών προγραμμάτων εργασίας'),
+INSERT INTO PROGRLANG VALUES ('1' , 'Σχεδίασμός και Ανάπτυξη βοηθητικών προγραμμάτων εργασίας'),
 				('2', 'Βελτίωση, Συντήρηση και Ανάπτυξη Εφαρμογών'),
 				('3', 'Σχεδίασμός και Ανάπτυξη Βιντεοπαιχνιδιών'),
 				('4', 'Σχεδίασμός Λειτουργικών Συστημάτων'),
@@ -34,29 +35,29 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 INSERT INTO PROGRSKILLS VALUES ('1' , '2');
 
 CREATE TABLE CUSTOMER (
-CUSTID INT NOT NULL AUTO_INCREMENT,
 USERNAME VARCHAR(20) NOT NULL,
 PASSWORD VARCHAR(30) NOT NULL,
 NAME VARCHAR(20) NOT NULL,
 SURNAME VARCHAR(20) NOT NULL,
 PHONE VARCHAR(13) NOT NULL,
-EMAIL VARCHAR(20) NOT NULL,
-PRIMARY KEY (CUSTID));
+EMAIL VARCHAR(40) NOT NULL,
+PRIMARY KEY (USERNAME ));
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO CUSTOMER (username, name, surname, phone, email) VALUES ( '1', 'iasonas', '1111', 'Iason', 'Bakas', '698203642', 'iasonas@gmail.com');
+INSERT INTO CUSTOMER (username, password, name, surname, phone, email) VALUES ( 'iasonas', '1111', 'Iason', 'Bakas', '698203642', 'iasonas@gmail.com');
 
 CREATE TABLE MEET (
 MEETID INT NOT NULL AUTO_INCREMENT,
-DATE VARCHAR(8),
-TIME VARCHAR(5),
+DATE VARCHAR(10),
+TIME  VARCHAR(5),
 PLACE VARCHAR(100),
 EXTRAINFO VARCHAR(200),
 PROGRID INT,
-CUSTID INT,
+USERNAME VARCHAR(20) NOT NULL,
+SOCIAL VARCHAR(20),
 PRIMARY KEY (MEETID),
 CONSTRAINT FKPPROGRID FOREIGN KEY (PROGRID) REFERENCES PROGRAMMER(PROGRID),
-CONSTRAINT FKCUSTID FOREIGN KEY (CUSTID) REFERENCES CUSTOMER(CUSTID));
+CONSTRAINT FKUSERNAME FOREIGN KEY (USERNAME) REFERENCES CUSTOMER(USERNAME));
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE RATING (

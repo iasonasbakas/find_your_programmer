@@ -10,11 +10,11 @@ public class MeetDAO {
 
 	}
 
-	public List<Meet> getMeetsByCustomerID(int custid) throws Exception {
+	public List<Meet> getMeetsByCustomer(String username) throws Exception {
 
 		Connection con = null;
 
-		String sqlquery = "SELECT * FROM customer WHERE custid = ?;";
+		String sqlquery = "SELECT * FROM customer WHERE username = ?;";
 
 		PreparedStatement stmt = null;
 
@@ -29,7 +29,7 @@ public class MeetDAO {
 
 			stmt = con.prepareStatement(sqlquery);
 
-			stmt.setInt(1, custid);
+			stmt.setString(1, username);
 
 			ResultSet rs = stmt.executeQuery();
 
@@ -37,15 +37,14 @@ public class MeetDAO {
 
 			while(rs.next()) {
 
-				int customerid = rs.getInt("custid");
 				CustomerDAO customerdao = new CustomerDAO();
-				Customer customer = customerdao.getCustomerByID(customerid);
+				Customer customer = customerdao.findCustomer(username);
 
 				int programmerid = rs.getInt("progrid");
 				ProgrammerDAO programmerdao = new ProgrammerDAO();
 				Programmer programmer = programmerdao.getProgrammerByID(programmerid);
 
-				meets.add(new Meet(rs.getInt("meetid"), rs.getDate("date"), rs.getString("place"), rs.getString("extrainfo"), rs.getString("email"), customer, programmer));
+				meets.add(new Meet(rs.getString("date"), rs.getString("place"), rs.getString("extrainfo"), rs.getString("email"), rs.getString("social"), customer, programmer));
 
 			}
 
@@ -100,15 +99,15 @@ public class MeetDAO {
 				throw new Exception("Could not find Meet with id: "+meetid);
 			}
 
-			int customerid = rs.getInt("custid");
+			String username = rs.getString("username");
 			CustomerDAO customerdao = new CustomerDAO();
-				Customer customer = customerdao.getCustomerByID(customerid);
+			Customer customer = customerdao.findCustomer(username);
 
 			int programmerid = rs.getInt("progrid");
 			ProgrammerDAO programmerdao = new ProgrammerDAO();
 			Programmer programmer = programmerdao.getProgrammerByID(programmerid);
 
-			Meet meet = new Meet(rs.getInt("meetid"), rs.getDate("date"), rs.getString("place"), rs.getString("extrainfo"), rs.getString("email"), customer, programmer);
+			Meet meet = new Meet(rs.getString("date"), rs.getString("place"), rs.getString("extrainfo"), rs.getString("email"), rs.getString("social"), customer, programmer);
 
 			rs.close();
 			stmt.close();
@@ -127,6 +126,68 @@ public class MeetDAO {
 				db.close();
 
 			} catch(Exception e) {}
+		}
+
+	}
+
+	public void saveMeet(Meet meet) throws Exception {
+
+		Connection con = null;
+
+		String sqlquery = "INSERT INTO meet (date, time, place, extrainfo, progrid, username, social) VALUES (?, ?, ?, ?, ?, ?, ?);";
+
+		DB db = new DB();
+
+		PreparedStatement stmt = null;
+
+		try {
+
+			db.open();
+
+			con = db.getConnection();
+
+			stmt = con.prepareStatement(sqlquery);
+
+			String date = meet.getDate();
+			String time = meet.getTime();
+			String place = meet.getPlace();
+			String extrainfo = meet.getExtrainfo();
+			String social = meet.getSocial();
+
+			Customer customer = meet.getCustomer();
+			String username = customer.getUsername();
+
+			Programmer progr = meet.getProgrammer();
+			int progrid = progr.getProgrammerId();
+
+
+
+			stmt.setString(1, date);
+			stmt.setString(2, time);
+			stmt.setString(3, place);
+			stmt.setString(4, extrainfo);
+			stmt.setInt(5, progrid);
+			stmt.setString(6, username);
+			stmt.setString(7, social);
+
+			stmt.executeUpdate();
+			stmt.close();
+			db.close();
+
+		} catch (SQLException e) {
+
+			throw new Exception(e.getMessage());
+
+		} finally {
+
+			try {
+
+				db.close();
+
+			}catch(Exception e) {
+
+			}
+
 		}
 
 	}

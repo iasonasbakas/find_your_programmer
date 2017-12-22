@@ -5,31 +5,23 @@ import java.util.Date;
 
 public class Meet {
 
-	private int meetid;
-	private Date date;
+	private String date;
 	private String time;
 	private String place;
 	private String extrainfo;
+	private String social;
 	private Customer customer;
 	private Programmer programmer;
 
-	public Meet(int meetid, Date date, String time, String place, String extrainfo, Customer customer, Programmer programmer) {
+	public Meet(String date, String time, String place, String extrainfo, String social, Customer customer, Programmer programmer) {
 
-		this.meetid = meetid;
 		this.customer = customer;
 		this.programmer = programmer;
 		this.date = date;
 		this.time = time;
 		this.place = place;
+		this.social = social;
 		this.extrainfo = extrainfo;
-	}
-
-	public int getMeetID() {
-		return meetid;
-	}
-
-	public void setMeetID(int meetid) {
-		this.meetid = meetid;
 	}
 
 	public Customer getCustomer() {
@@ -48,11 +40,11 @@ public class Meet {
 		this.programmer = programmer;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -70,6 +62,14 @@ public class Meet {
 
 	public void setPlace(String place) {
 		this.place = place;
+	}
+
+	public String getSocial() {
+		return social;
+	}
+
+	public void setSocial(String social) {
+		this.social = social;
 	}
 
 	public String getExtrainfo() {
