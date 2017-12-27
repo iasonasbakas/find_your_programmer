@@ -83,7 +83,7 @@ public class fyp_meetController extends HttpServlet {
 			out.println("			<ul class='nav navbar-nav'>");
 			out.println("				<li><a href='../fyp_index.jsp'>Home</a></li>");
 			out.println("				<li class='active'><a href='../fyp_search.jsp'>Search</a></li>");
-			out.println("				<li><a href=''>MyMeetings</a></li>");
+			out.println("				<li><a href='../fyp_myMeetings.jsp'>MyMeetings</a></li>");
 			out.println("			</ul>");
 			out.println("				<ul class='nav navbar-nav navbar-right'>");
 			out.println("					<li class='dropdown'>");

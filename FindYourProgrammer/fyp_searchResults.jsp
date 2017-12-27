@@ -79,7 +79,7 @@ if(session.getAttribute("customer-object") == null) {
 				<ul class="nav navbar-nav">
 					<li><a href="fyp_index.jsp">Home</a></li>
 					<li  class="active"><a href="fyp_search.jsp">Search</a></li>
-					<li><a href="">MyMeetings</a></li>
+					<li><a href="fyp_myMeetings.jsp">MyMeetings</a></li>
 				</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">

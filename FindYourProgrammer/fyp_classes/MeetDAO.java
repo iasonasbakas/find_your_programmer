@@ -14,7 +14,7 @@ public class MeetDAO {
 
 		Connection con = null;
 
-		String sqlquery = "SELECT * FROM customer WHERE username = ?;";
+		String sqlquery = "SELECT * FROM meet WHERE username = ?;";
 
 		PreparedStatement stmt = null;
 
@@ -44,7 +44,7 @@ public class MeetDAO {
 				ProgrammerDAO programmerdao = new ProgrammerDAO();
 				Programmer programmer = programmerdao.getProgrammerByID(programmerid);
 
-				meets.add(new Meet(rs.getString("date"), rs.getString("place"), rs.getString("extrainfo"), rs.getString("email"), rs.getString("social"), customer, programmer));
+				meets.add(new Meet(rs.getString("date"),rs.getString("time"), rs.getString("place"), rs.getString("extrainfo"), rs.getString("social"), customer, programmer));
 
 			}
 
@@ -69,6 +69,65 @@ public class MeetDAO {
 			}
 		}
 	}
+
+
+
+	public List<Integer> getMeetIDsByCustomer(String username) throws Exception {
+
+		Connection con = null;
+
+		String sqlquery = "SELECT meetid FROM meet WHERE username = ?;";
+
+		PreparedStatement stmt = null;
+
+		DB db = new DB();
+
+		List<Integer> ids = new ArrayList<Integer>();
+
+
+		try {
+
+			db.open();
+
+			con = db.getConnection();
+
+			stmt = con.prepareStatement(sqlquery);
+
+			stmt.setString(1, username);
+
+			ResultSet rs = stmt.executeQuery();
+
+
+			while(rs.next()) {
+
+				ids.add(rs.getInt("meetid"));
+
+			}
+
+			rs.close();
+			stmt.close();
+			db.close();
+
+			return ids;
+
+		} catch (Exception e) {
+
+			throw new Exception(e.getMessage());
+
+		} finally {
+
+			try {
+
+				db.close();
+
+			} catch (Exception e) {
+
+			}
+		}
+	}
+
+
+
 
 	public Meet getMeetByID(int meetid) throws Exception {
 
