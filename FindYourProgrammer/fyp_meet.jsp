@@ -39,15 +39,13 @@ session.setAttribute("programmer-object",programmer);
 	<style>
 		body {
 		background: url(images/default.jpg) no-repeat center center fixed;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
 		-o-background-size: cover;
 		background-size: cover;
 		padding-top: 30px;
 		overflow-x: hidden;
 		min-height: 100%;
-    	height: auto;
-    	margin: 0px;
+    		height: auto;
+    		margin: 0px;
 		}
 
 		#index label {
@@ -74,11 +72,10 @@ session.setAttribute("programmer-object",programmer);
 	<nav class="navbar navbar-inverse navbar-fixed-top navbar-custom">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand text-info" href="">Find your Programmer</a>
+				<a class="navbar-brand text-info" href="fyp_index.jsp">Find your Programmer</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="fyp_index.jsp">Home</a></li>
 					<li><a href="fyp_search.jsp">Search</a></li>
 					<li><a href="fyp_myMeetings.jsp">MyMeetings</a></li>
 				</ul>
@@ -174,9 +171,10 @@ session.setAttribute("programmer-object",programmer);
 		</div><!--/modal-body row-->
 	</form>
 	</div> <!-- /container-->
-		<footer class="footer">
-			<p>© 2017 Find Your Programmer. All rights reserved</p>
-		</footer>
+	
+	<footer class="footer">
+		<p>© 2017 Find Your Programmer. All rights reserved</p>
+	</footer>
 
 
 

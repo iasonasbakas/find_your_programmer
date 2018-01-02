@@ -30,8 +30,6 @@ if(session.getAttribute("customer-object") == null) {
 	<style>
 		body {
 		background: url(images/default.jpg) no-repeat center center fixed;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
 		-o-background-size: cover;
 		background-size: cover;
 		padding-top: 30px;
@@ -61,11 +59,10 @@ if(session.getAttribute("customer-object") == null) {
 	<nav class="navbar navbar-inverse navbar-fixed-top navbar-custom">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand text-info" href="">Find your Programmer</a>
+				<a class="navbar-brand text-info" href="fyp_index.jsp">Find your Programmer</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="fyp_index.jsp">Home</a></li>
 					<li  class="active"><a href="fyp_search.jsp">Search</a></li>
 					<li><a href="fyp_myMeetings.jsp">MyMeetings</a></li>
 				</ul>

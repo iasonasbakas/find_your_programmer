@@ -16,8 +16,6 @@
 	<style>
 		body {
 		background: url(images/reg_img.jpg) no-repeat center center fixed;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
 		-o-background-size: cover;
 		background-size: cover;
 		padding-top: 30px;
