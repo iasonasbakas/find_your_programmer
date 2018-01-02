@@ -12,6 +12,16 @@ if(session.getAttribute("customer-object") == null) {
 
 <%
 } else {
+
+MeetDAO meetdao = new MeetDAO();
+String meetidd = request.getParameter("meetid");
+int meetid = Integer.parseInt(meetidd);
+Meet meet = meetdao.getMeetByID(meetid);
+Programmer progr = meet.getProgrammer();
+
+
+session.setAttribute("meetid-object",meetid);
+
 %>
 
 <!DOCTYPE html>
@@ -84,12 +94,12 @@ if(session.getAttribute("customer-object") == null) {
 	
 	<div class="container theme-showcase" role="main">
 		<div class="page-header">
-		<div><h1>Αξιολόγησε το meeting σου με τον<h1></div>
+		<div><h1>Αξιολόγησε το meeting σου με τον <%=progr.getName()%>&nbsp<%=progr.getSurname()%><h1></div>
 		</div>
 	</div>
 	
 	<div class="container">
-		<div class="form-horizontal" method="POST" action="servlet/fyp_ratingController">
+		<form class="form-horizontal" method="POST" action="servlet/fyp_ratingController">
 			<div class="form-group">
 				<label class="control-label col-lg-4" for="inputComment">Comments: </label>	
 					<div class="col-lg-4">
@@ -107,7 +117,7 @@ if(session.getAttribute("customer-object") == null) {
 					<button type="submit" class="btn btn-default btn-lg btn-custom">Submit</button>
 				</div>
 			</div>
-		</div>
+		</form>
 	</div>
 			
 		

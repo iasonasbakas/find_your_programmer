@@ -166,7 +166,7 @@ public class MeetDAO {
 			ProgrammerDAO programmerdao = new ProgrammerDAO();
 			Programmer programmer = programmerdao.getProgrammerByID(programmerid);
 
-			Meet meet = new Meet(rs.getString("date"), rs.getString("place"), rs.getString("extrainfo"), rs.getString("email"), rs.getString("social"), customer, programmer);
+			Meet meet = new Meet(rs.getString("date"), rs.getString("time"), rs.getString("place"), rs.getString("extrainfo"),rs.getString("social"), customer, programmer);
 
 			rs.close();
 			stmt.close();

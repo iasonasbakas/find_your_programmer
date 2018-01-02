@@ -4,6 +4,11 @@ import java.sql.*;
 import java.lang.Math;
 import java.util.List;
 import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 
 public class RatingDAO {
 
@@ -11,11 +16,11 @@ public class RatingDAO {
 
 	}
 
-	public void saveRating(Rating rating) throws Exception {
+	public void saveRating(Rating rating,int meetid) throws Exception {
 
 		Connection con = null;
 
-		String sqlquery = "INSERT INTO rating (rating, ratinginfo, ratingdate, meetid) VALUES (?, ?, ?, ?, ?);";
+		String sqlquery = "INSERT INTO rating (rating, ratinginfo, ratingdate, meetid) VALUES (?, ?, ?, ?);";
 
 		DB db = new DB();
 
@@ -29,14 +34,17 @@ public class RatingDAO {
 
 			stmt = con.prepareStatement(sqlquery);
 
-			int ratingnum = rating.getRating();
+
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			Date date = new Date();
+
+			String ratingnum = rating.getRating();
 			String ratinginfo = rating.getRatinginfo();
-			String ratingdate = rating.getRatingdate();
-			Meet meet = rating.getMeet();
-			int meetid = meet.getMeetID();
+			String ratingdate = dateFormat.format(date);
 
 
-			stmt.setInt(1, ratingnum);
+
+			stmt.setString(1, ratingnum);
 			stmt.setString(2, ratinginfo);
 			stmt.setString(3, ratingdate);
 			stmt.setInt(4, meetid);
@@ -67,15 +75,13 @@ public class RatingDAO {
 
 		Connection con = null;
 
-		String sqlquery = "SELECT rating FROM rating,meet,programmer WHERE rating.meetid = meet.meetid AND meet.progrid = ?;";
+		String sqlquery = "SELECT avg(rating) FROM rating,meet,programmer WHERE rating.meetid = meet.meetid AND meet.progrid = ?;";
 
 		DB db = new DB();
 
 		PreparedStatement stmt = null;
 
-		double avg = 0;
-		int sum = 0;
-		int count = 0;
+		double avg=0.0;
 
 		try {
 
@@ -83,27 +89,23 @@ public class RatingDAO {
 
 			con = db.getConnection();
 
-			stmt.setInt(1, id);
-
 			stmt = con.prepareStatement(sqlquery);
+			stmt.setInt(1, id);
 
 			ResultSet rs = stmt.executeQuery();
 
-			while(rs.next()) {
 
-				count += 1;
-				sum += rs.getInt("rating");
+			if(rs.next()) {
+
+				avg = rs.getFloat(1);
+
 			}
-
-			avg = Math.round((1.0*sum / count*10.0)/10.0);
 
 			rs.close();
 			stmt.close();
 			db.close();
 
 			return avg;
-
-
 
 		}  catch (Exception e) {
 
@@ -151,7 +153,7 @@ public class RatingDAO {
 				MeetDAO meetdao = new MeetDAO();
 				Meet meet = meetdao.getMeetByID(meetid);
 
-				ratings.add(new Rating(rs.getInt("id"), rs.getInt("rating"), rs.getString("ratinginfo"), rs.getString("ratingdate"), meet));
+				ratings.add(new Rating(rs.getString("rating"), rs.getString("ratinginfo"), rs.getString("ratingdate"), meet));
 			}
 
 			rs.close();

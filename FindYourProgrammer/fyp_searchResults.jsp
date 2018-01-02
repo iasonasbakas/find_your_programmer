@@ -71,6 +71,11 @@ if(session.getAttribute("customer-object") == null) {
 	<nav class="navbar navbar-inverse navbar-fixed-top navbar-custom">
 		<div class="container">
 			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span> <span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
 				<a class="navbar-brand text-info" href="fyp_index.jsp">Find your Programmer</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
@@ -120,7 +125,17 @@ for(int i=0; i<programmers.size(); i++) {
     <div class="span3 well">
         <center>
         <h3><%=progr.getName()%>&nbsp;<%=progr.getSurname()%></h3>
-        <h4>Μ.Ο. Αξιολογήσεων:  </h4>
+<%if(ratdao.getAverageRatingByProgID(prid) != 0.0){
+%>
+        <h4>Μ.Ο. Αξιολογήσεων: <%=ratdao.getAverageRatingByProgID(prid)%></h4>
+<%
+} else {
+%>
+	<h4>Μ.Ο. Αξιολογήσεων: (Δεν υπάρχουν αξιολογήσεις)</h4>
+<%
+}
+%>
+
 	<span><strong>Phone: </strong></span>
 	<span class="label label-warning"><%=progr.getPhone()%></span>
 	<span><strong>Email: </strong></span>

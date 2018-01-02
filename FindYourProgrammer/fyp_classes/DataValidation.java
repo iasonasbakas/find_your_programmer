@@ -151,5 +151,16 @@ public class DataValidation {
 	}
 
 
+//////////////////////RATING/////////////////////////////////////
+
+	public boolean isRatingValid(String rating) {
+		int rat = Integer.parseInt(rating);
+		if(rat<1 || rat>5)
+			return false;
+		else
+			return true;
+	}
+
+
 
 }
