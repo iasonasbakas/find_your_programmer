@@ -30,13 +30,6 @@ if(session.getAttribute("customer-object") == null) {
 	<style>
 		body {
 		background: url(images/default.jpg) no-repeat center center fixed;
-		-o-background-size: cover;
-		background-size: cover;
-		padding-top: 30px;
-		overflow-x: hidden;
-		min-height: 100%;
-    		height: auto;
-    		margin: 0px;
 		}
 
 		#index label {
@@ -121,12 +114,10 @@ if(session.getAttribute("customer-object") == null) {
 										<li class = "list-group-item"><div class="radio radio-info radio-inline"><input type="radio" id="inlineRadio7" value="7" name="radios"/><label for="inlineRadio7"><span>3. Βοήθεια στην εγκατάσταση συστημάτων Η/Υ</span></label></div></li>
 									</ul>
 					</div>
-
 						<div class="col-lg-3 col-lg-offset-5">
-							<button type="submit" class="btn btn-success btn-lg">Submit</button>
-							<button type="reset" class="btn btn-danger btn-lg">Cancel</button>
+								<button type="submit" class="btn btn-default btn-lg btn-custom">Submit</button>
+								<button type="reset" class="btn btn-default btn-lg btn-custom">Reset</button>					
 						</div>
-
 				</div>
 			</form>
 

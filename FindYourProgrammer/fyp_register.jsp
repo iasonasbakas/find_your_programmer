@@ -16,13 +16,6 @@
 	<style>
 		body {
 		background: url(images/reg_img.jpg) no-repeat center center fixed;
-		-o-background-size: cover;
-		background-size: cover;
-		padding-top: 30px;
-		overflow-x: hidden;
-		min-height: 100%;
-    	height: auto;
-    	margin: 0px;
 		}
 
 		#index label {
@@ -60,44 +53,44 @@
 	<div class="container">
 		<form class="form-horizontal" method="POST" action="servlet/fyp_registerController">
 			<div class="form-group">
-				<label class="control-label col-lg-4" for="inputUsername">Username:</label>
-					<div class="col-lg-4">
+				<label class="control-label col-lg-4 col-md-4 col-sm-4" for="inputUsername">Username:</label>
+					<div class="col-lg-4 col-md-4 col-sm-4">
 						<input type="text" class="form-control" id="inputUsername" name="username" placeholder="Username">
 					</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-4" for="inputPsw">Password:</label>
-					<div class="col-lg-4">
+				<label class="control-label col-lg-4 col-md-4 col-sm-4" for="inputPsw">Password:</label>
+					<div class="col-lg-4 col-md-4 col-sm-4">
 						<input type="password" class="form-control" id="inputPsw" name="password" placeholder="New Password">
 					</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-4" for="inputPsw2">Password Confirmation:</label>
-					<div class="col-lg-4">
+				<label class="control-label col-lg-4 col-md-4 col-sm-4" for="inputPsw2">Password Confirmation:</label>
+					<div class="col-lg-4 col-md-4 col-sm-4">
 						<input type="password" class="form-control" id="inputPsw2" name="password2" placeholder="Insert your password again">
 					</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-4" for="inputEmail">Email:</label>
-					<div class="col-lg-4">
+				<label class="control-label col-lg-4 col-md-4 col-sm-4" for="inputEmail">Email:</label>
+					<div class="col-lg-4 col-md-4 col-sm-4">
 						<input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email">
 					</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-4" for="inputName">Name:</label>
-					<div class="col-lg-4">
+				<label class="control-label col-lg-4 col-md-4 col-sm-4" for="inputName">Name:</label>
+					<div class="col-lg-4 col-md-4 col-sm-4">
 						<input type="text" class="form-control" id="inputName" name="name" placeholder="Name">
 					</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-4" for="inputSurname">Surname:</label>
-					<div class="col-lg-4">
+				<label class="control-label col-lg-4 col-md-4 col-sm-4" for="inputSurname">Surname:</label>
+					<div class="col-lg-4 col-md-4 col-sm-4">
 						<input type="text" class="form-control" id="inputSurname" name="surname" placeholder="Surname">
 					</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-4" for="inputPhone">Phone:</label>
-					<div class="col-lg-4">
+				<label class="control-label col-lg-4 col-md-4 col-sm-4" for="inputPhone">Phone:</label>
+					<div class="col-lg-4 col-md-4 col-sm-4">
 						<input type="text" class="form-control" id="inputPhone" name="phone" placeholder="Phone">
 					</div>
 			</div>

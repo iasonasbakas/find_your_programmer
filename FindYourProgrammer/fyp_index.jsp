@@ -29,13 +29,6 @@ if(session.getAttribute("customer-object") == null) {
 	<style>
 		body {
 		background: url(images/img2.jpg) no-repeat center center fixed;
-		-o-background-size: cover;
-		background-size: cover;
-		padding-top: 10px;
-		overflow-x: hidden;
-		min-height: 100%;
-    	height: auto;
-    	margin: 0px;
 		}
 	</style>
 

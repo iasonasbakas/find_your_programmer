@@ -37,13 +37,6 @@ if(session.getAttribute("customer-object") == null) {
 	<style>
 		body {
 		background: url(images/default.jpg) no-repeat center center fixed;
-		-o-background-size: cover;
-		background-size: cover;
-		padding-top: 30px;
-		overflow-x: hidden;
-		min-height: 100%;
-    	height: auto;
-    	margin: 0px;
 		}
 
 		#index label {

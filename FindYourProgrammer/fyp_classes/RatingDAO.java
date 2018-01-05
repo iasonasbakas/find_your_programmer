@@ -140,9 +140,8 @@ public class RatingDAO {
 
 			con = db.getConnection();
 
-			stmt.setInt(1, id);
-
 			stmt = con.prepareStatement(sqlquery);
+			stmt.setInt(1, id);
 
 			ResultSet rs = stmt.executeQuery();
 
@@ -175,5 +174,57 @@ public class RatingDAO {
 			}
 		}
 	}
+
+	public String hasRating(int meetid) throws Exception {
+
+		String rat;
+
+		Connection con = null;
+
+		String sqlquery = "SELECT rating FROM rating WHERE rating.meetid = ?;";
+
+		DB db = new DB();
+
+		PreparedStatement stmt = null;
+
+		try {
+			db.open();
+
+			con = db.getConnection();
+
+			stmt = con.prepareStatement(sqlquery);
+			stmt.setInt(1, meetid);
+
+			ResultSet rs = stmt.executeQuery();
+
+
+			if(rs.next()) {
+				rat = rs.getString("rating");; }
+			else {
+				rat = null;}
+
+			rs.close();
+			stmt.close();
+			db.close();
+
+			return rat;
+
+		} catch (Exception e) {
+
+			throw new Exception(e.getMessage());
+
+		} finally {
+
+			try {
+				db.close();
+			} catch (Exception e) {
+
+			}
+		}
+	}
+
+
+
+
 
 }

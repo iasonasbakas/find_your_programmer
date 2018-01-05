@@ -24,19 +24,12 @@ if(session.getAttribute("customer-object") == null) {
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Το Find your Programmer είναι μια online πλατφόρμα εύρεσης προγραμματιστών μέσω της οποίας ο καθένας μπορεί να βρει, να επικοινωνήσει, να συνεργαστεί, και στο τέλος να αξιολογίσει είτε επαγγελματίες, είτε ερασιτέχνες προγραμματιστές">
+	<meta name="description" content="MyMeetings">
 	<meta name="author" content="yourprogr.gr">
 
 	<style>
 		body {
 		background: url(images/default.jpg) no-repeat center center fixed;
-		-o-background-size: cover;
-		background-size: cover;
-		padding-top: 30px;
-		overflow-x: hidden;
-		min-height: 100%;
-    		height: auto;
-    		margin: 0px;
 		}
 
 		#index label {
@@ -210,7 +203,7 @@ if(session.getAttribute("customer-object") == null) {
 		<div class="col-sm-12">
 	
 <%
-
+RatingDAO ratdao = new RatingDAO();
 MeetDAO meetdao = new MeetDAO();
 Programmer programmer;
 List<Meet> meets = meetdao.getMeetsByCustomer(customer.getUsername());
@@ -241,9 +234,19 @@ if(!meets.isEmpty()) {
 	                                <p>Info: </h3><%=meet.getExtrainfo()%></p>
 	                            </div>
 	                        </div>
+<% if(ratdao.hasRating(meetid) == null) {
+%>
 	                        <div class="col-md-3 cta-button">
 	                            <a class="btn btn-lg btn-block btn-warning" href="fyp_rating.jsp?meetid=<%out.print(meetid);%>">Αξιολόγησε!</a>
 	                        </div>
+<%} else {
+%>
+	                        <div class="col-md-3 cta-button">
+	                            <a class="btn btn-lg btn-block btn-warning" href=""><%=ratdao.hasRating(meetid)%></a>
+	                        </div>
+<%
+}
+%>    
 	                     </div>
                 	</div>
 
