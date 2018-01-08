@@ -139,8 +139,8 @@ public class fyp_registerController extends HttpServlet {
 				out.println("		<p>&copy; 2017 Find Your Programmer. All rights reserved</p>");
 				out.println("	</footer>");
 
-				out.println("	<script src='js/jquery.min.js'></script>");
-				out.println("	<script	src='js/bootstrap.min.js'></script>");
+				out.println("	<script src='../js/jquery.min.js'></script>");
+				out.println("	<script	src='../js/bootstrap.min.js'></script>");
 
 				out.println("	</body>");
 				out.println("</html>");
