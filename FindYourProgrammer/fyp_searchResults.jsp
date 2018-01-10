@@ -135,7 +135,13 @@ for(int i=0; i<programmers.size(); i++) {
 	<span class="label label-info"><%=progr.getEmail()%></span>
 	<p class="text-left"><strong>Πληροφορίες: </strong><br>
 	<%=progr.getExtraInfo()%></p>
-	<a role="button" class="btn btn-default" href="fyp_meet.jsp?prID=<%out.print(prid);%>">Κλείσε ραντεβού</a> 
+	<a role="button" class="btn btn-default" href="fyp_meet.jsp?prID=<%out.print(prid);%>">Κλείσε ραντεβού</a>
+<%if(ratdao.getAverageRatingByProgID(prid) != 0.0){
+%>
+	<a role="button" class="btn btn-default" href="fyp_showRatings.jsp?prID=<%out.print(prid);%>">Βαθμολογίες</a>
+<%
+}
+%>
 	</center>
     </div>
   

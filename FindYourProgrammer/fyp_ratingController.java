@@ -112,6 +112,10 @@ public class fyp_ratingController extends HttpServlet {
 				out.println("				<li><b><br>Rating: </b>"+rating+"</li>");
 				out.println("				<li><b>Comments: </b>" +comments+" </li>");
 				out.println("			</ul></div>");
+				out.println("			<div class='form-group'>");
+				out.println("				<div class='col-md-6 col-md-offset-5' >");
+				out.println("					<a role='button' type='submit' class='btn btn-primary btn-lg' href='../fyp_index.jsp'><span class='glyphicon glyphicon glyphicon-home'></span>Home</a>");
+				out.println("				</div>");
 
 				RatingDAO ratingdao = new RatingDAO();
 				Rating rat = new Rating(rating,comments,null,null);

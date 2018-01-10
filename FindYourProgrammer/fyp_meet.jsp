@@ -132,31 +132,31 @@ session.setAttribute("programmer-object",programmer);
 					<div class="form-group">
 						<div class="fa fa-facebook col-lg-1"></div>
 						<div class="col-lg-6">
-							<input type="text" class="form-control" id="inputDate" name="social" placeholder="Facebook / Messenger">
+							<input type="text" class="form-control" name="fb" placeholder="Facebook / Messenger">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="fa fa-twitter col-lg-1"></div>
 						<div class="col-lg-6">
-							<input type="text" class="form-control" id="inputDate" name="social" placeholder="Twitter">
+							<input type="text" class="form-control" name="tw" placeholder="Twitter">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="fa fa-google col-lg-1"></div>
 						<div class="col-lg-6">
-							<input type="text" class="form-control" id="inputDate" name="social" placeholder="Gmail">
+							<input type="text" class="form-control" name="gm" placeholder="Gmail">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="fa fa-skype col-lg-1"></div>
 						<div class="col-lg-6">
-							<input type="text" class="form-control" id="inputDate" name="social" placeholder="Skype">
+							<input type="text" class="form-control" name="sk" placeholder="Skype">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="fa fa-linkedin col-lg-1"></div>
 						<div class="col-lg-6">
-							<input type="text" class="form-control" id="inputDate" name="social" placeholder="LinkedIn">
+							<input type="text" class="form-control" name="lin" placeholder="LinkedIn">
 						</div>
 					</div>					
 					<div class="form-group">

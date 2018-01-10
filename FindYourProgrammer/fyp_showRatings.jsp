@@ -14,6 +14,12 @@ if(session.getAttribute("customer-object") == null) {
 
 <%
 } else {
+
+String prid = request.getParameter("prID");
+int id = Integer.parseInt(prid);
+ProgrammerDAO prodao = new ProgrammerDAO();
+Programmer programmer = prodao.getProgrammerByID(id);
+
 %>
 
 
@@ -24,7 +30,7 @@ if(session.getAttribute("customer-object") == null) {
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="MyMeetings">
+	<meta name="description" content="RatingsList">
 	<meta name="author" content="yourprogr.gr">
 
 	<style>
@@ -182,7 +188,7 @@ if(session.getAttribute("customer-object") == null) {
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="fyp_search.jsp">Search</a></li>
-					<li class="active"><a href="fyp_myMeetings.jsp">MyMeetings</a></li>
+					<li><a href="fyp_myMeetings.jsp">MyMeetings</a></li>
 				</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
@@ -198,7 +204,7 @@ if(session.getAttribute("customer-object") == null) {
 	
 	<div class="container theme-showcase" role="main">
 		<div class="page-header">
-		<div><h1>Έλεγξε τα meetings σου και αξιολόγησε τα<h1></div>
+		<div><h1>Οι βαθμολογίες του <%=programmer.getName()%>&nbsp;<%=programmer.getSurname()%><h1></div>
 		</div>
 	</div>
 	<div class="container">
@@ -206,20 +212,18 @@ if(session.getAttribute("customer-object") == null) {
 	
 <%
 RatingDAO ratdao = new RatingDAO();
-MeetDAO meetdao = new MeetDAO();
-Programmer programmer;
-List<Meet> meets = meetdao.getMeetsByCustomer(customer.getUsername());
-List<Integer> ids = meetdao.getMeetIDsByCustomer(customer.getUsername());
-Meet meet = null;
-int meetid;
 
-if(!meets.isEmpty()) {
+List<Rating> ratings = ratdao.getProgrRatings(id);
+Rating rating = null;
+Meet meet;
 
-	for(int i=0; i<meets.size(); i++) {
+
+
+	for(int i=0; i<ratings.size(); i++) {
 	
-		meet = meets.get(i);
-		programmer = meet.getProgrammer();
-		meetid = ids.get(i);
+		rating = ratings.get(i);
+		meet = rating.getMeet();
+		customer = meet.getCustomer();
 		
 
 %>
@@ -228,58 +232,30 @@ if(!meets.isEmpty()) {
 	                <div class="bs-calltoaction bs-calltoaction-warning">
 	                    <div class="row">
 	                        <div class="col-md-9 cta-contents">
-	                            <h1 class="cta-title"><%=programmer.getName()%>&nbsp<%=programmer.getSurname()%></h1>
+	                            <h1 class="cta-title"><%=customer.getUsername()%></h1>
 	                            <div class="cta-desc">
-	                                <p>Location: <%= meet.getPlace()%></p>
-	                                <p>Date: <%=meet.getDate()%></p>
-	                                <p>Time: </h3><%=meet.getTime()%></p>
-	                                <p>Social: </h3><%=meet.getSocial()%></p>
-	                                <p>Info: </h3><%=meet.getExtrainfo()%></p>
+	                                <p>Info: </h3><%=rating.getRatinginfo()%></p>
+	                                <p>Date: <%=rating.getRatingdate()%></p>
 	                            </div>
 	                        </div>
-<% if(ratdao.hasRating(meetid) == null) {
-%>
 	                        <div class="col-md-3 cta-button">
-	                            <a class="btn btn-lg btn-block btn-warning" href="fyp_rating.jsp?meetid=<%out.print(meetid);%>">Αξιολόγησε!</a>
-	                        </div>
-<%} else {
-%>
-	                        <div class="col-md-3 cta-button">
-	                            <a class="btn btn-lg btn-block btn-warning" href="#"><%=ratdao.hasRating(meetid)%></a>
-	                        </div>
+	                            <a class="btn btn-lg btn-block btn-warning" href="#"><%=rating.getRating()%></a>
+	                        </div>   
+	                     </div>
+                	</div>  
 <%
 }
-%>    
-	                     </div>
-                	</div>
-
-         
-<%
-} 
-
-} else {
-%>
-
-<div class="alert alert-warning" role="alert">Δεν έχετε πραγματοποιήσει κανένα meeting</div>
-
-<%
-	}
 %>
                 </div>
          </div>
 
 	
 	<footer class="footer">
-		<p>© 2017 Find Your Programmer. All rights reserved</p>
+		<p>&copy; 2017 Find Your Programmer. All rights reserved</p>
 	</footer>
 
 
-
-
-	<!–- jQuery library (necessary for Bootstrap JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-	<!–- Bootstrap core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
 	
 	

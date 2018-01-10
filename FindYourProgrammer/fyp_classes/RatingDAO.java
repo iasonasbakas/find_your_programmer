@@ -75,13 +75,13 @@ public class RatingDAO {
 
 		Connection con = null;
 
-		String sqlquery = "SELECT avg(rating) FROM rating,meet,programmer WHERE rating.meetid = meet.meetid AND meet.progrid = ?;";
+		String sqlquery = "SELECT ROUND(AVG(rating),2) FROM rating,meet,programmer WHERE rating.meetid = meet.meetid AND meet.progrid = ?;";
 
 		DB db = new DB();
 
 		PreparedStatement stmt = null;
 
-		double avg=0.0;
+		double avg=0;
 
 		try {
 
@@ -97,7 +97,7 @@ public class RatingDAO {
 
 			if(rs.next()) {
 
-				avg = rs.getFloat(1);
+				avg = rs.getDouble(1);
 
 			}
 
@@ -127,7 +127,7 @@ public class RatingDAO {
 
 		Connection con = null;
 
-		String sqlquery = "SELECT id, rating, ratinginfo, ratingdate, meetid FROM rating, meet WHERE rating.meetid = meet.meetid AND meet.progrid = ?;";
+		String sqlquery = "SELECT ratid, rating, ratinginfo, ratingdate, rating.meetid FROM rating, meet WHERE rating.meetid = meet.meetid AND meet.progrid = ?;";
 
 		DB db = new DB();
 

@@ -92,6 +92,11 @@ public class fyp_registerController extends HttpServlet {
 				out.println("				<li><b>Phone: </b>"+phone+"</li>");
 				out.println("				<li><b>Email: </b>"+email+"</li>");
 				out.println("			</ul></div>");
+				out.println("			<div class='form-group'>");
+				out.println("				<div class='col-md-6 col-md-offset-5' >");
+				out.println("					<a role='button' type='submit' class='btn btn-primary btn-lg' href='../fyp_login.jsp'><span class='glyphicon glyphicon-chevron-left'></span>Login</a>");
+				out.println("				</div>");
+				out.println("			</div>");
 
 				CustomerDAO custdao = new CustomerDAO();
 				Customer customer = new Customer(username, password, name, surname, phone, email);

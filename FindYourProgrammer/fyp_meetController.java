@@ -24,7 +24,25 @@ public class fyp_meetController extends HttpServlet {
 			String date = request.getParameter("date");
 			String time = request.getParameter("time");
 			String extrainfo = request.getParameter("extrainfo");
-			String social = request.getParameter("social");
+			String fb = request.getParameter("fb");
+			String tw = request.getParameter("tw");
+			String gm = request.getParameter("gm");
+			String sk = request.getParameter("sk");
+			String lin = request.getParameter("lin");
+			String social;
+
+			if(!fb.isEmpty()) {
+				social = "fb/"+fb;
+			} else if (!tw.isEmpty()) {
+				social = "tw/"+tw;
+			} else if (!gm.isEmpty()) {
+				social = "gm/"+gm;
+			} else if (!sk.isEmpty()) {
+				social = "sk/"+sk;
+			} else {
+				social = "lin/"+lin;
+			}
+
 
 			DataValidation data = new DataValidation();
 
@@ -121,6 +139,11 @@ public class fyp_meetController extends HttpServlet {
 				out.println("				<li><b>ExtraInfo: </b>"+extrainfo+"</li>");
 				out.println("				<li><b>Social: </b>"+social+"</li>");
 				out.println("			</ul></div>");
+				out.println("			<div class='form-group'>");
+				out.println("				<div class='col-md-6 col-md-offset-5' >");
+				out.println("					<a role='button' type='submit' class='btn btn-primary btn-lg' href='../fyp_index.jsp'><span class='glyphicon glyphicon glyphicon-home'></span>Home</a>");
+				out.println("				</div>");
+				out.println("			</div>");
 
 				MeetDAO meetdao = new MeetDAO();
 				Meet meet = new Meet(date, time, place, extrainfo, social, customer, programmer);
