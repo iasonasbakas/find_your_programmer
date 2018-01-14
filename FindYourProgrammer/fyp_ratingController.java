@@ -17,6 +17,7 @@ public class fyp_ratingController extends HttpServlet {
 
 		}else {
 
+			request.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = new PrintWriter(response.getWriter(), true);
 

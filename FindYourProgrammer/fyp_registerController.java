@@ -8,6 +8,7 @@ public class fyp_registerController extends HttpServlet {
 	public void doPost (HttpServletRequest request, HttpServletResponse response)
 		throws IOException, ServletException {
 
+		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = new PrintWriter(response.getWriter(), true);
 
